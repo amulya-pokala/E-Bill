@@ -14,8 +14,7 @@ public class CustomUnAuthorizedException extends RuntimeException {
 	/**
 	 * Instantiates a new custom un authorized exception.
 	 *
-	 * @param msg
-	 *            the msg
+	 * @param msg the msg
 	 */
 	public CustomUnAuthorizedException(String msg) {
 		super(msg);

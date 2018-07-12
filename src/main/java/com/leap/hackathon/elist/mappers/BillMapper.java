@@ -5,13 +5,9 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-
 import com.leap.hackathon.elist.models.Bill;
 
-
-
-
-public class BillMapper implements RowMapper<Bill>{
+public class BillMapper implements RowMapper<Bill> {
 
 	@Override
 	public Bill mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -22,7 +18,5 @@ public class BillMapper implements RowMapper<Bill>{
 		bill.setDateOfPurchase(rs.getDate("date"));
 		return bill;
 	}
-	
-	
 
 }

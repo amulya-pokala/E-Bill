@@ -1,6 +1,5 @@
 package com.leap.hackathon.elist.controllers;
 
-
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -18,15 +17,13 @@ import com.leap.hackathon.elist.Dao.CustomerDao;
 import com.leap.hackathon.elist.models.Bill;
 import com.leap.hackathon.elist.models.Customer;
 
-
-
-
 public class CustomerController {
 	@Autowired
 	CustomerDao customerDAO;
+
 	@PostMapping(value = "/api/customer")
-	public void addNewCustomer(@RequestBody @Valid Customer customer, BindingResult bindingResult, HttpServletRequest request)
-			throws UnknownHostException {
+	public void addNewCustomer(@RequestBody @Valid Customer customer, BindingResult bindingResult,
+			HttpServletRequest request) throws UnknownHostException {
 
 		if (bindingResult.hasErrors()) {
 			throw new CustomBadRequestException("Invalid details.\n");
@@ -35,16 +32,35 @@ public class CustomerController {
 		if (!isDone) {
 			throw new CustomBadRequestException("Admin already exist with same Admin Name");
 		}
-		
+
 	}
-	@GetMapping(value="/api/getBills/{customerId}")
-	public List<Bill> getAllCustomerBills(@PathVariable int customerId, BindingResult bindingResult, HttpServletRequest request)
+
+	@GetMapping(value = "/api/getBills/{customerId}")
+	public List<Bill> getAllCustomerBills(@PathVariable int customerId, BindingResult bindingResult,
+			HttpServletRequest request) throws UnknownHostException {
+		if (bindingResult.hasErrors()) {
+			throw new CustomBadRequestException("Invalid details.\n");
+		}
+		List<Bill> bills = customerDAO.getCustomerBills(customerId);
+		return bills;
+	}
+
+	@GetMapping(value = "/api/getBills/filter/{month}/{year}/{customerId}")
+	public List<Bill> filterBillsByMonth(@PathVariable String month, @PathVariable String year,
+			@PathVariable int customerId, BindingResult bindingResult, HttpServletRequest request)
 			throws UnknownHostException {
 		if (bindingResult.hasErrors()) {
 			throw new CustomBadRequestException("Invalid details.\n");
 		}
-		List<Bill> bills= customerDAO.getCustomerBills(customerId);
+		List<Bill> bills = customerDAO.FilterByMonth(customerId, month, year);
 		return bills;
+	}
+
+	@GetMapping(value = "/api/customer/login/{name}/{password}")
+	public int loginCustomer(@PathVariable String name, @PathVariable String password, BindingResult bindingResult,
+			HttpServletRequest request) throws UnknownHostException {
+		return customerDAO.validateCustomer(name, password);
+
 	}
 
 }
