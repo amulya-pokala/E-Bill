@@ -12,4 +12,6 @@ public class Query {
 	public static final String CREATEVENDOR="INSERT INTO VENDOR(user_name,password,email,mobile,store_name,branch) VALUES(?,?,?,?,?,?)";
 	public static final String ADDITEM="INSERT INTO ?(name,price,availability) VALUES(?,?,?)";
 	public static final String CREATEVENDORTABLE="CREATE TABLE ?(id int,name varchar(50),price double, availability int) ";
+	public static final String FILTERBILLSBYMONTH="SELECT * FROM BILL WHERE CUSTOMER_ID = ? AND DATE LIKE %-?-%";
+	public static final String GETBILLID="SELECT BILL_ID FROM BILL WHERE BILL_DATA=?";
 }

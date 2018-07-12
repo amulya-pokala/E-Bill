@@ -31,7 +31,7 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public boolean isAvailability() {
+	public boolean isAvailable() {
 		return availability;
 	}
 	public void setAvailability(boolean availability) {

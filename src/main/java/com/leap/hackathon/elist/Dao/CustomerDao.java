@@ -13,5 +13,5 @@ public interface CustomerDao {
 	public boolean deleteCustomer(long customerId);
 	public List<Bill> getCustomerBills(long customerId);
 	public void setDataSource(DataSource dataSource);
-
+	public List<Bill> FilterByMonth(long customerId,String month);
 }
