@@ -54,7 +54,7 @@ public class VendorController {
 
 	}
 	@GetMapping(value = "/api/vendor/login/{name}/{password}")
-	public int loginCustomer(@PathVariable String name, @PathVariable String password, BindingResult bindingResult,
+	public int loginVendor(@PathVariable String name, @PathVariable String password, BindingResult bindingResult,
 			HttpServletRequest request) throws UnknownHostException {
 		return vendorDAO.validateVendor(name, password);
 

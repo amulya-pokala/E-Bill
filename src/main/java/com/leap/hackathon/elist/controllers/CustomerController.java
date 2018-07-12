@@ -21,10 +21,10 @@ public class CustomerController {
 	@Autowired
 	CustomerDao customerDAO;
 
-	@PostMapping(value = "/api/customer")
+	@PostMapping(value = "/e-list/api/customer")
 	public void addNewCustomer(@RequestBody @Valid Customer customer, BindingResult bindingResult,
 			HttpServletRequest request) throws UnknownHostException {
-
+		System.out.println("customer data"+customer.getAlias());
 		if (bindingResult.hasErrors()) {
 			throw new CustomBadRequestException("Invalid details.\n");
 		}
