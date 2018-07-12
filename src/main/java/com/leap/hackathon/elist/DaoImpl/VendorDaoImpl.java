@@ -1,5 +1,10 @@
 package com.leap.hackathon.elist.DaoImpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import javax.sql.DataSource;
+
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,13 +35,15 @@ public class VendorDaoImpl implements VendorDao{
 		return true;
 	}
 
-	public boolean addItems(Item item) {
-		// TODO Auto-generated method stub
-		try {
-			
-		}
-		
-		return false;
+	
+
+	public boolean Purchase(String bill, int customerId, int vendorId) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");  
+		   LocalDateTime now = LocalDateTime.now();
+		   int billId = jdbcTemplate.queryForObject(Query.GETBILLID, new Object[] { bill },
+					Integer.class);
+		   jdbcTemplate.update(Query.CREATEBILL,new Object[] {customerId,billId,bill,vendorId,dtf.format(now)});
+		return true;;
 	}
 
 }

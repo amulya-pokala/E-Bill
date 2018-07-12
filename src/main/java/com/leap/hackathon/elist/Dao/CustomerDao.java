@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import com.leap.hackathon.elist.models.Bill;
 import com.leap.hackathon.elist.models.Customer;
+import com.leap.hackathon.elist.models.Item;
 
 public interface CustomerDao {
 	
@@ -13,5 +14,5 @@ public interface CustomerDao {
 	public boolean deleteCustomer(long customerId);
 	public List<Bill> getCustomerBills(long customerId);
 	public void setDataSource(DataSource dataSource);
-
+    
 }

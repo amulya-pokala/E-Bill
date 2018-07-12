@@ -9,4 +9,5 @@ public interface VendorDao {
 	public boolean createVendor(Vendor vendor);
 	public boolean addItems(Item item,int vendorId);
 	public void setDataSource(DataSource dataSource);
+	public boolean Purchase(String bill, int customerId, int vendorId);
 }

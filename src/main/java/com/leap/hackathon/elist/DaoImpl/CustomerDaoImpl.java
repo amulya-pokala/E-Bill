@@ -15,6 +15,7 @@ import com.leap.hackathon.elist.mappers.BillMapper;
 
 import com.leap.hackathon.elist.models.Bill;
 import com.leap.hackathon.elist.models.Customer;
+import com.leap.hackathon.elist.models.Item;
 import com.leap.hackathon.elist.utility.Query;
 
 public class CustomerDaoImpl implements CustomerDao{
