@@ -1,6 +1,6 @@
 package com.leap.hackathon.elist.DaoImpl;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -56,6 +56,12 @@ public class CustomerDaoImpl implements CustomerDao{
 	@Override
 	public void setDataSource(DataSource dataSource) {
 		 jdbcTemplate = new JdbcTemplate(dataSource);
+		
+	}
+
+	@Override
+	public List<Bill> FilterByMonth(long customerId, String month) {
+		return jdbcTemplate.query(Query.FILTERBILLSBYMONTH,  new Object[] {customerId, month}, new BillMapper());
 		
 	}
 

@@ -6,7 +6,6 @@ import javax.sql.DataSource;
 
 import com.leap.hackathon.elist.models.Bill;
 import com.leap.hackathon.elist.models.Customer;
-import com.leap.hackathon.elist.models.Item;
 
 public interface CustomerDao {
 	
@@ -15,4 +14,5 @@ public interface CustomerDao {
 	public List<Bill> getCustomerBills(long customerId);
 	public void setDataSource(DataSource dataSource);
     
+	public List<Bill> FilterByMonth(long customerId,String month);
 }
