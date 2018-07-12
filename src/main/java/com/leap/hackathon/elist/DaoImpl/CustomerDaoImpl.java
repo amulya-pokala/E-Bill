@@ -1,11 +1,18 @@
 package com.leap.hackathon.elist.DaoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+
 import com.leap.hackathon.elist.Dao.CustomerDao;
+import com.leap.hackathon.elist.mappers.BillMapper;
+
 import com.leap.hackathon.elist.models.Bill;
 import com.leap.hackathon.elist.models.Customer;
 import com.leap.hackathon.elist.utility.Query;
@@ -22,7 +29,7 @@ public class CustomerDaoImpl implements CustomerDao{
 					Integer.class);
 			customer.setCustomerId(customerId);;
 		} catch (DataAccessException e) {
-			logger.info("couldn't insert admin" + customer.getName());
+			logger.info("couldn't insert customer" + customer.getName());
 			return false;
 		}
 		return true;
@@ -30,14 +37,25 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	@Override
 	public boolean deleteCustomer(long customerId) {
-		// TODO Auto-generated method stub
+		try {
+			jdbcTemplate.update(Query.DELETECUSTOMER,customerId);
+			
+		} catch (DataAccessException e) {
+			logger.info("cant delete customer" + customerId);
+			return false;
+		}
 		return false;
 	}
 
 	@Override
 	public List<Bill> getCustomerBills(long customerId) {
-		// TODO Auto-generated method stub
-		return null;
+			return jdbcTemplate.query(Query.GETALLCUSTOMERBILLS, new Object[] { customerId },new BillMapper());
+	}
+
+	@Override
+	public void setDataSource(DataSource dataSource) {
+		 jdbcTemplate = new JdbcTemplate(dataSource);
+		
 	}
 
 }
