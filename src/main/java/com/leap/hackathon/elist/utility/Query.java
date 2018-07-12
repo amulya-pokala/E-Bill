@@ -10,6 +10,6 @@ public class Query {
 	public static final String DELETECUSTOMER="DELETE FROM CUSTOMER WHERE CUSTOMERID";
 	public static final String GETALLCUSTOMERBILLS="SECECT * FROM BILL WHERE CUSTOMER_ID=?";
 	public static final String CREATEVENDOR="INSERT INTO VENDOR(user_name,password,email,mobile,store_name,branch) VALUES(?,?,?,?,?,?)";
-	
-
+	public static final String ADDITEM="INSERT INTO ?(name,price,availability) VALUES(?,?,?)";
+	public static final String CREATEVENDORTABLE="CREATE TABLE ?(id int,name varchar(50),price double, availability int) ";
 }
