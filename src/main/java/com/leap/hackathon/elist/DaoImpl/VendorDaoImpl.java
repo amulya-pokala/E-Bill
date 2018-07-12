@@ -60,4 +60,15 @@ public class VendorDaoImpl implements VendorDao {
 
 	}
 
+	@Override
+	public int validateVendor(String vendorName, String password) {
+		Integer vendorId;
+		try {
+			vendorId = jdbcTemplate.queryForObject(Query.AUTHENTICATEVENDOR, new Object[] { vendorName, password }, Integer.class);
+		} catch (Exception e) {
+			vendorId = null;
+		}
+		return vendorId;
+	}
+
 }

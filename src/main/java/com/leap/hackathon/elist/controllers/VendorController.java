@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,6 +51,12 @@ public class VendorController {
 	public void postBill(Bill bill, BindingResult bindingResult, HttpServletRequest request)
 			throws UnknownHostException {
 		vendorDAO.Purchase(bill.getBillJson(), bill.getCustomerId(), bill.getVendorId());
+
+	}
+	@GetMapping(value = "/api/vendor/login/{name}/{password}")
+	public int loginCustomer(@PathVariable String name, @PathVariable String password, BindingResult bindingResult,
+			HttpServletRequest request) throws UnknownHostException {
+		return vendorDAO.validateVendor(name, password);
 
 	}
 

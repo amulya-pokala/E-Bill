@@ -13,4 +13,6 @@ public interface VendorDao {
 	public void setDataSource(DataSource dataSource);
 
 	public boolean Purchase(String bill, long customerId, long vendorId);
+	
+	public int validateVendor(String vendorName, String password);
 }
