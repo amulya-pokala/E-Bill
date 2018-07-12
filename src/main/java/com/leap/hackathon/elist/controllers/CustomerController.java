@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.leap.hackathon.elist.CustomExceptions.CustomBadRequestException;
@@ -36,8 +37,8 @@ public class CustomerController {
 		}
 		
 	}
-	@GetMapping(value="/api/getBills")
-	public List<Bill> getAllCustomerBills(@RequestBody @Valid int customerId, BindingResult bindingResult, HttpServletRequest request)
+	@GetMapping(value="/api/getBills/{customerId}")
+	public List<Bill> getAllCustomerBills(@PathVariable int customerId, BindingResult bindingResult, HttpServletRequest request)
 			throws UnknownHostException {
 		if (bindingResult.hasErrors()) {
 			throw new CustomBadRequestException("Invalid details.\n");
